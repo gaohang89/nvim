@@ -32,6 +32,7 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
 source $HOME/.config/nvim/_machine_specific.vim
+source ~/.vimrc
 
 " ==================== Editor behavior ====================
 "set clipboard=unnamedplus
@@ -96,8 +97,8 @@ tnoremap <C-O> <C-\><C-N><C-O>
 " ==================== Basic Mappings ====================
 let mapleader=" "
 noremap ; :
-nnoremap Q :q<CR>
-nnoremap S :w<CR>
+"nnoremap Q :q<CR>
+"nnoremap S :w<CR>
 " Open the vimrc file anytime
 nnoremap <LEADER>rc :e $HOME/.config/nvim/init.vim<CR>
 nnoremap <LEADER>rv :e .nvimrc<CR>
@@ -106,12 +107,13 @@ augroup NVIMRC
     autocmd BufWritePost *.nvimrc exec ":so %"
 augroup END
 " Undo operations
-noremap l u
+"noremap l u
 " Insert Key
-noremap k i
-noremap K I
+"noremap k i
+"noremap K I
 " Copy to system clipboard
 vnoremap Y "+y
+
 " Find pair
 noremap ,. %
 vnoremap ki $%
@@ -135,32 +137,32 @@ inoremap <c-y> <ESC>A {}<ESC>i<CR><ESC>ko
 " < n   i >
 "     e
 "     v
-noremap <silent> u k
-noremap <silent> n h
-noremap <silent> e j
-noremap <silent> i l
-noremap <silent> gu gk
-noremap <silent> ge gj
+"noremap <silent> u k
+"noremap <silent> n h
+"noremap <silent> e j
+"noremap <silent> i l
+"noremap <silent> gu gk
+"noremap <silent> ge gj
 noremap <silent> \v v$h
 " U/E keys for 5 times u/e (faster navigation)
-noremap <silent> U 5k
-noremap <silent> E 5j
+"noremap <silent> U 5k
+"noremap <silent> E 5j
 " N key: go to the start of the line
-noremap <silent> N 0
+"noremap <silent> N 0
 " I key: go to the end of the line
-noremap <silent> I $
+"noremap <silent> I $
 " Faster in-line navigation
 noremap W 5w
 noremap B 5b
 " set h (same as n, cursor left) to 'end of word'
-noremap h e
+"noremap h e
 " Ctrl + U or E will move up/down the view port without moving the cursor
 noremap <C-U> 5<C-y>
 noremap <C-E> 5<C-e>
 " Custom cursor movement
-source $HOME/.config/nvim/cursor.vim
+"source $HOME/.config/nvim/cursor.vim
 " If you use Qwerty keyboard, uncomment the next line.
-" source $HOME/nvim/cursor_for_qwerty.vim
+source $HOME/.config/nvim/cursor_for_qwerty.vim
 
 
 " ==================== Insert Mode Cursor Movement ====================
@@ -180,31 +182,32 @@ cnoremap <M-w> <S-Right>
 
 " ==================== Window management ====================
 " Use <space> + new arrow keys for moving the cursor around windows
-noremap <LEADER>w <C-w>w
-noremap <LEADER>u <C-w>k
-noremap <LEADER>e <C-w>j
-noremap <LEADER>n <C-w>h
-noremap <LEADER>i <C-w>l
+" to edit
+noremap <LEADER>W <C-w>w
+noremap <LEADER>k <C-w>k
+noremap <LEADER>j <C-w>j
+noremap <LEADER>h <C-w>h
+noremap <LEADER>l <C-w>l
 noremap qf <C-w>o
 " Disable the default s key
 noremap s <nop>
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-noremap su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap se :set splitbelow<CR>:split<CR>
-noremap sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap si :set splitright<CR>:vsplit<CR>
+noremap spJ :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap spj :set splitbelow<CR>:split<CR>
+noremap spL :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap spl :set splitright<CR>:vsplit<CR>
 " Resize splits with arrow keys
-noremap <up> :res +5<CR>
-noremap <down> :res -5<CR>
-noremap <left> :vertical resize-5<CR>
-noremap <right> :vertical resize+5<CR>
+noremap <up> :res -5<CR>
+noremap <down> :res +5<CR>
+noremap <left> :vertical resize+5<CR>
+noremap <right> :vertical resize-5<CR>
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+noremap sph <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+noremap spv <C-w>t<C-w>H
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
+noremap spH <C-w>b<C-w>K
+noremap spV <C-w>b<C-w>H
 " Press <SPACE> + q to close the window below the current window
 noremap <LEADER>q <C-w>j:q<CR>
 
@@ -214,11 +217,11 @@ noremap <LEADER>q <C-w>j:q<CR>
 noremap tu :tabe<CR>
 noremap tU :tab split<CR>
 " Move around tabs with tn and ti
-noremap tn :-tabnext<CR>
-noremap ti :+tabnext<CR>
+noremap ti :-tabnext<CR>
+noremap tn :+tabnext<CR>
 " Move the tabs with tmn and tmi
-noremap tmn :-tabmove<CR>
-noremap tmi :+tabmove<CR>
+noremap tmi :-tabmove<CR>
+noremap tmn :+tabmove<CR>
 
 
 " ==================== Markdown Settings ====================
@@ -256,7 +259,7 @@ endfun
 map <F10> :call SynGroup()<CR>
 
 " Compile function
-noremap r :call CompileRunGcc()<CR>
+noremap gr :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -317,6 +320,9 @@ endfunc
 " ==================== Install Plugins with Vim-Plug ====================
 call plug#begin('$HOME/.config/nvim/plugged')
 
+" hop.nvim
+Plug 'phaazon/hop.nvim'
+
 " Github Copilot
 Plug 'github/copilot.vim'
 
@@ -332,7 +338,7 @@ Plug 'theniceboy/nvim-deus'
 Plug 'theniceboy/eleline.vim', { 'branch': 'no-scrollbar' }
 
 " General Highlighter
-Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+" Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
 
 " File navigation
@@ -544,7 +550,7 @@ let g:coc_global_extensions = [
 	\ 'coc-sourcekit',
 	\ 'coc-stylelint',
 	\ 'coc-syntax',
-	\ 'https://github.com/theniceboy/coc-tailwindcss',
+	"\ 'https://github.com/theniceboy/coc-tailwindcss',
 	\ 'coc-tasks',
 	\ 'coc-translator',
 	\ 'coc-tsserver',
@@ -552,7 +558,7 @@ let g:coc_global_extensions = [
 	\ 'coc-vimlsp',
 	\ 'coc-yaml',
 	\ 'coc-yank']
-inoremap <silent><expr> <TAB>
+inoremap <silent><expr> `
 	\ pumvisible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<TAB>" :
 	\ coc#refresh()
@@ -572,7 +578,7 @@ function! Show_documentation()
 		call CocAction('doHover')
 	endif
 endfunction
-nnoremap <LEADER>h :call Show_documentation()<CR>
+nnoremap <LEADER><LEADER>h :call Show_documentation()<CR>
 " set runtimepath^=~/.config/nvim/coc-extensions/coc-flutter-tools/
 " let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
 " let $NVIM_COC_LOG_LEVEL = 'debug'
@@ -621,6 +627,56 @@ let g:coc_snippet_next = '<c-e>'
 let g:coc_snippet_prev = '<c-n>'
 imap <C-e> <Plug>(coc-snippets-expand-jump)
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
+
+" ============================== coc-completion ========================================
+"Use <tab> and <S-tab> to navigate completion list: >
+
+function! CheckBackSpace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ CheckBackSpace() ? "\<Tab>" :
+\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+"Use <c-space> to trigger completion: >
+
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+"Use <CR> to confirm completion, use: >
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<CR>"
+
+"To make <CR> to confirm selection of selected complete item or notify coc.nvim
+"to format on enter, use: >
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#_select_confirm()
+				\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+"Map <tab> for trigger completion, completion confirm, snippet expand and jump
+"like VSCode: >
+"I want to confirminoremap <silent><expr> <TAB>
+"   \ coc#pum#visible() ? coc#_select_confirm() :
+"   \ coc#expandableOrJumpable() ?
+"   \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+"   \ CheckBackSpace() ? "\<TAB>" :
+"   \ coc#refresh()
+"
+" function! CheckBackSpace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+"
+" let g:coc_snippet_next = '<tab>'
 
 
 " ==================== vim-instant-markdown ====================
@@ -907,6 +963,9 @@ let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
 
+" ==================== hop.nvim ====================
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
 
 " ==================== vim-illuminate ====================
 let g:Illuminate_delay = 750
@@ -933,7 +992,7 @@ let g:dartfmt_options = ["-l 100"]
 
 
 " ==================== tcomment_vim ====================
-nnoremap ci cl
+" nnoremap ci cl
 let g:tcomment_textobject_inlinecomment = ''
 nmap <LEADER>cn g>c
 vmap <LEADER>cn g>
@@ -946,7 +1005,7 @@ let g:move_key_modifier = 'C'
 
 
 " ==================== any-jump ====================
-nnoremap j :AnyJump<CR>
+" nnoremap j :AnyJump<CR>
 let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.9
 
@@ -1190,9 +1249,16 @@ let g:terminal_color_14 = '#9AEDFE'
 " ==================== Necessary Commands to Execute ====================
 exec "nohlsearch"
 
-
 " Open the _machine_specific.vim file if it has just been created
 if has_machine_specific_file == 0
 	exec "e ~/.config/nvim/_machine_specific.vim"
 endif
 
+" ==================== hop.nvim ====================
+lua << EOF
+require'hop'.setup()
+EOF
+
+noremap <LEADER>w :HopWord<CR>
+noremap <LEADER>i :HopLine<CR>
+noremap <LEADER>b :HopAnywhere<CR>
