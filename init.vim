@@ -237,7 +237,7 @@ nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
 " Opening a terminal window
 noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 " Press space twice to jump to the next '<++>' and edit it
-noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
+noremap <LEADER>v <Esc>/<++><CR>:nohlsearch<CR>"_c4l
 " Spelling Check with <space>sc
 noremap <LEADER>sc :set spell!<CR>
 " Press ` to change case (instead of ~)
