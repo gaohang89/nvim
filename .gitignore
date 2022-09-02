@@ -1,8 +1,8 @@
 *.swp
 .DS_Store
 view/
-plugged/
-sessions/
+# plugged/
+# sessions/
 autoload/plug.vim.old
 tmp/
 .netrwhist

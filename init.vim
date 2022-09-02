@@ -35,7 +35,7 @@ source $HOME/.config/nvim/_machine_specific.vim
 source ~/.vimrc
 
 " ==================== Editor behavior ====================
-"set clipboard=unnamedplus
+" set clipboard=unnamedplus
 let &t_ut=''
 set autochdir
 set exrc
@@ -259,7 +259,8 @@ endfun
 map <F10> :call SynGroup()<CR>
 
 " Compile function
-noremap gr :call CompileRunGcc()<CR>
+" noremap gr :call CompileRunGcc()<CR>
+noremap	<F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -526,6 +527,20 @@ nnoremap H :GitGutterPreviewHunk<CR>
 nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
 nnoremap <LEADER>g= :GitGutterNextHunk<CR>
 
+" ==================== clipboard ====================
+let g:clipboard = {
+      \   'name': 'myClipboard',
+      \   'copy': {
+      \      '+': ['tmux', 'load-buffer', '-'],
+      \      '*': ['tmux', 'load-buffer', '-'],
+      \    },
+      \   'paste': {
+      \      '+': ['tmux', 'save-buffer', '-'],
+      \      '*': ['tmux', 'save-buffer', '-'],
+      \   },
+      \   'cache_enabled': 1,
+      \ }
+
 
 " ==================== coc.nvim ====================
 let g:coc_global_extensions = [
@@ -603,7 +618,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD :tab sp<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 " nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gf <Plug>(coc-references)
 nmap <leader>rn <Plug>(coc-rename)
 nmap tt :CocCommand explorer<CR>
 " coc-translator
@@ -734,7 +749,7 @@ let g:wildfire_objects = {
 
 
 " ==================== Undotree ====================
-noremap L :UndotreeToggle<CR>
+noremap U :UndotreeToggle<CR>
 let g:undotree_DiffAutoOpen = 1
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_ShortIndicators = 1
