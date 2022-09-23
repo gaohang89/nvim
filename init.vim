@@ -369,7 +369,7 @@ Plug 'mbbill/undotree'
 Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 Plug 'theniceboy/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
 "Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
 Plug 'kdheepak/lazygit.nvim'
 
@@ -377,8 +377,8 @@ Plug 'kdheepak/lazygit.nvim'
 " Plug 'lervag/vimtex'
 
 " CSharp
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
+" Plug 'OmniSharp/omnisharp-vim'
+" Plug 'ctrlpvim/ctrlp.vim' , { 'for': ['cs', 'vim-plug'] } " omnisharp-vim dependency
 
 " HTML, CSS, JavaScript, Typescript, PHP, JSON, etc.
 Plug 'elzr/vim-json'
@@ -912,6 +912,9 @@ let g:xtabline_settings.enable_mappings = 0
 let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
 let g:xtabline_settings.enable_persistance = 0
 let g:xtabline_settings.last_open_first = 1
+let g:xtabline_settings.buffers_paths = -2
+let g:xtabline_settings.current_tab_paths = -2
+let g:xtabline_settings.other_tabs_paths = -2
 noremap to :XTabCycleMode<CR>
 noremap \p :echo expand('%:p')<CR>
 
@@ -1276,4 +1279,4 @@ EOF
 
 noremap <LEADER>w :HopWord<CR>
 noremap <LEADER>i :HopLine<CR>
-noremap <LEADER>b :HopAnywhere<CR>
+noremap <LEADER>u :HopAnywhere<CR>
